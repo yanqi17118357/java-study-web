@@ -1,30 +1,57 @@
 package com.example.webtest;
 
+import com.example.entity.User;
+import com.example.mapper.UserMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.SneakyThrows;
 import lombok.extern.java.Log;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Map;
 
-@Log
-// urlPatterns与value是一样效果
-// loadOnStartup设置大于0会启动时加载
-// 正数的值越小，优先级越高
-@WebServlet(value = {"/test1", "/test2"}, loadOnStartup = 1)
+@WebServlet(value = "/login", loadOnStartup = 1)
 public class TestServlet extends HttpServlet {
 
+    SqlSessionFactory factory;
+
+    @SneakyThrows
     @Override
     public void init() throws ServletException {
-        System.out.println("我被加载了");
+        factory = new SqlSessionFactoryBuilder().build(Resources.getResourceAsReader("mybatis-config.xml"));
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
-        resp.getWriter().write("<h1>恭喜你解锁了全新玩法</h1>");
+        // 获取POST请求携带的表单数据
+        Map<String, String[]> map = req.getParameterMap();
+        //判断表单是否完整
+        if (map.containsKey("username") && map.containsKey("password")) {
+            String username = req.getParameter("username");
+            String password = req.getParameter("password");
+
+            try(SqlSession sqlSession = factory.openSession(true)) {
+                UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+                User user = userMapper.getUser(username, password);
+
+                if (user != null) {
+                    resp.getWriter().write("用户："+username+"，登录成功！");
+                } else {
+                    resp.getWriter().write("您登录的用户密码不正确或此用户不存在");
+                }
+            }
+
+        }else {
+            resp.getWriter().write("错误，您的表单数据不完整！");
+        }
     }
 }
