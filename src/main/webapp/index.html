@@ -1,39 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
+    <script src="test.js"></script>
     <title>Document</title>
-  </head>
-  <body>
-  <h1>登录到系统</h1>
-  <form method="post" action="login">
+</head>
+<body>
+<h1>登录到系统</h1>
+<form method="post" action="login">
     <hr>
     <div>
-      <label>
-        <input type="text" placeholder="用户名" name="username">
-      </label>
+        <label>
+            <input type="text" placeholder="用户名" name="username">
+        </label>
     </div>
     <div>
-      <label>
-        <input type="password" placeholder="密码" name="password">
-      </label>
+        <label>
+            <input type="password" placeholder="密码" name="password">
+        </label>
     </div>
     <div>
-      <button>登录</button>
+        <button>登录</button>
     </div>
 
-  </form>
-  <hr>
-  <form method="post" action="file" enctype="multipart/form-data">
-    <div>
-      <input type="file" name="test-file">
-    </div>
-    <div>
-      <button>上传文件</button>
-    </div>
-  </form>
-  </body>
+</form>
+<hr>
+<div id="time"></div>
+<br>
+<button onclick="updateTime()">更新数据</button>
+<script>
+    updateTime()
+</script>
+</body>
 </html>
