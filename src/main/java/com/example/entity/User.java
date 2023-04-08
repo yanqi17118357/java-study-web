@@ -1,10 +1,12 @@
 package com.example.entity;
 
 import lombok.Data;
+import lombok.Getter;
 
 @Data
 public class User {
     int id;
-    String name;
+    String userName;
     String password;
+
 }

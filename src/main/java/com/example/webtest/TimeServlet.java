@@ -1,5 +1,6 @@
 package com.example.webtest;
 
+import com.example.entity.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,5 +20,12 @@ public class TimeServlet extends HttpServlet {
         String date = dateFormat.format(new Date());
         resp.setContentType("text/html;charset=UTF-8");
         resp.getWriter().write(date);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User user = (User) req.getAttribute("user");
+        resp.setContentType("text/html;charset=UTF-8");
+        resp.getWriter().write(user.getUserName()+", 登录成功！");
     }
 }
