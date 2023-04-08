@@ -9,10 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="95cf1a34-0f96-4cb1-8525-f6500a435ef3" name="更改" comment="Servlet应用-上传文件">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/webtest/TimeServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.html" afterDir="false" />
+    <list default="true" id="95cf1a34-0f96-4cb1-8525-f6500a435ef3" name="更改" comment="Servlet应用-前端xhr请求数据">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/webtest/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/webtest/LoginServlet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +93,7 @@
   </component>
   <component name="RunManager">
     <configuration name="Tomcat 10.1.7" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.7" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="BROWSER_ID" value="24b6b305-c2ae-4b2c-93be-a5352ec01a07" />
       <deployment>
         <artifact name="WebTest:war exploded">
           <settings>
@@ -200,7 +200,7 @@
       <workItem from="1680920698277" duration="811000" />
       <workItem from="1680921611052" duration="124000" />
       <workItem from="1680942952502" duration="1465000" />
-      <workItem from="1680944447307" duration="2964000" />
+      <workItem from="1680944447307" duration="4691000" />
     </task>
     <task id="LOCAL-00001" summary="Servlet的生命周期">
       <created>1680779385529</created>
@@ -265,7 +265,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680963168108</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Servlet应用-前端xhr请求数据">
+      <created>1680963966180</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1680963966180</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,7 +299,8 @@
     <MESSAGE value="项目瘦身" />
     <MESSAGE value="Servlet应用-下载文件" />
     <MESSAGE value="Servlet应用-上传文件" />
-    <option name="LAST_COMMIT_MESSAGE" value="Servlet应用-上传文件" />
+    <MESSAGE value="Servlet应用-前端xhr请求数据" />
+    <option name="LAST_COMMIT_MESSAGE" value="Servlet应用-前端xhr请求数据" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

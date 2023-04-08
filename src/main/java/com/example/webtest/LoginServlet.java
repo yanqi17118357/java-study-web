@@ -42,7 +42,11 @@ public class LoginServlet extends HttpServlet {
                 User user = userMapper.getUser(username, password);
 
                 if (user != null) {
-                    resp.getWriter().write("用户："+username+"，登录成功！");
+                    // 重定向页面内部页面
+                    // resp.sendRedirect("time");
+                    // 手动写请求码与重定向网址
+                    resp.setStatus(302);
+                    resp.setHeader("Location", "https://www.baidu.com");
                 } else {
                     resp.getWriter().write("您登录的用户密码不正确或此用户不存在");
                 }
