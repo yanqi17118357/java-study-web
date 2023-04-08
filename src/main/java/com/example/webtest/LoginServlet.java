@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.Map;
 
 @WebServlet(value = "/login", loadOnStartup = 1)
-public class TestServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 
     SqlSessionFactory factory;
 
