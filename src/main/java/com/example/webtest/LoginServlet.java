@@ -2,6 +2,7 @@ package com.example.webtest;
 
 import com.example.entity.User;
 import com.example.mapper.UserMapper;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -43,11 +44,8 @@ public class LoginServlet extends HttpServlet {
 
                 if (user != null) {
 
-                    // 使用重定向到time页面
-                    // * 请求转发是一次请求，重定向是两次请求
-                    // * 请求转发地址栏不会发生改变， 重定向地址栏会发生改变
-                    // * 请求转发可以共享请求参数 ，重定向之后，就获取不了共享参数了
-                    // * 请求转发只能转发给内部的Servlet
+                    ServletContext context = getServletContext();
+                    context.setAttribute("test", "我是重定向之前的数据");
                     resp.sendRedirect("time");
                 } else {
                     resp.getWriter().write("您登录的用户密码不正确或此用户不存在");
