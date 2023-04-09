@@ -43,11 +43,12 @@ public class LoginServlet extends HttpServlet {
 
                 if (user != null) {
 
-                    // 服务器内部的跳转机制
-                    // 直接将本次请求转发给其他Servlet进行处理
-                    // 并由其他Servlet来返回结果
-                    req.setAttribute("user", user);
-                    req.getRequestDispatcher("/time").forward(req, resp);
+                    // 使用重定向到time页面
+                    // * 请求转发是一次请求，重定向是两次请求
+                    // * 请求转发地址栏不会发生改变， 重定向地址栏会发生改变
+                    // * 请求转发可以共享请求参数 ，重定向之后，就获取不了共享参数了
+                    // * 请求转发只能转发给内部的Servlet
+                    resp.sendRedirect("time");
                 } else {
                     resp.getWriter().write("您登录的用户密码不正确或此用户不存在");
                 }
