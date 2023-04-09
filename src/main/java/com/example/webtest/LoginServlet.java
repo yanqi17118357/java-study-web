@@ -4,6 +4,7 @@ import com.example.entity.User;
 import com.example.mapper.UserMapper;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebInitParam;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,7 +20,10 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
-@WebServlet(value = "/login", loadOnStartup = 1)
+// 此初始化参数只作用域当前的Servlet
+@WebServlet(value = "/login", loadOnStartup = 1, initParams = {
+        @WebInitParam(name = "test", value = "我是初始化参数！")
+})
 public class LoginServlet extends HttpServlet {
 
     SqlSessionFactory factory;
@@ -27,6 +31,9 @@ public class LoginServlet extends HttpServlet {
     @SneakyThrows
     @Override
     public void init() throws ServletException {
+        System.out.println(getInitParameter("test"));
+        // 打印全局初始化参数
+        System.out.println(getServletContext().getInitParameter("lbwnb"));
         factory = new SqlSessionFactoryBuilder().build(Resources.getResourceAsReader("mybatis-config.xml"));
     }
 
