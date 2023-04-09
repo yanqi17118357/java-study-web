@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
 
                     ServletContext context = getServletContext();
                     context.setAttribute("test", "我是重定向之前的数据");
-                    resp.sendRedirect("time");
+                    context.getRequestDispatcher("/time").forward(req, resp);
                 } else {
                     resp.getWriter().write("您登录的用户密码不正确或此用户不存在");
                 }
