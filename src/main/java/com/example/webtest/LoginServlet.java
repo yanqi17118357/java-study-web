@@ -9,12 +9,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;
+import org.apache.commons.io.IOUtils;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 @WebServlet(value = "/login", loadOnStartup = 1)
@@ -45,7 +47,9 @@ public class LoginServlet extends HttpServlet {
                 if (user != null) {
 
                     ServletContext context = getServletContext();
-                    context.setAttribute("test", "我是重定向之前的数据");
+                    // 可以获取webapp中的资源
+                    System.out.println(IOUtils.toString(context.getResourceAsStream("index.html"), StandardCharsets.UTF_8));
+                    System.out.println(IOUtils.toString(context.getResourceAsStream("test.js"), StandardCharsets.UTF_8));
                     context.getRequestDispatcher("/time").forward(req, resp);
                 } else {
                     resp.getWriter().write("您登录的用户密码不正确或此用户不存在");

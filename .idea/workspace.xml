@@ -9,12 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="95cf1a34-0f96-4cb1-8525-f6500a435ef3" name="更改" comment="请求转发与重定向的区别">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/mybatisx/templates.xml" afterDir="false" />
+    <list default="true" id="95cf1a34-0f96-4cb1-8525-f6500a435ef3" name="更改" comment="ServletContext可以进行请求转发">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/webtest/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/webtest/LoginServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/webtest/TimeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/webtest/TimeServlet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +65,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "branch2",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/java/EE/JavaWeb/WebTest/src/main/resources",
+    "last_opened_file_path": "D:/java/EE/JavaWeb/WebTest/src/main/webapp",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -207,7 +204,7 @@
       <workItem from="1680944447307" duration="6561000" />
       <workItem from="1680967401278" duration="400000" />
       <workItem from="1681014316923" duration="87000" />
-      <workItem from="1681014449851" duration="6427000" />
+      <workItem from="1681014449851" duration="7675000" />
     </task>
     <task id="LOCAL-00001" summary="Servlet的生命周期">
       <created>1680779385529</created>
@@ -300,7 +297,21 @@
       <option name="project" value="LOCAL" />
       <updated>1681018864569</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="ServletContext设置附加值，通过重定向操作">
+      <created>1681032201594</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1681032201594</updated>
+    </task>
+    <task id="LOCAL-00015" summary="ServletContext可以进行请求转发">
+      <created>1681032422955</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1681032422955</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -331,7 +342,9 @@
     <MESSAGE value="重定向sendRedirect" />
     <MESSAGE value="请求转发req.setAttribute" />
     <MESSAGE value="请求转发与重定向的区别" />
-    <option name="LAST_COMMIT_MESSAGE" value="请求转发与重定向的区别" />
+    <MESSAGE value="ServletContext设置附加值，通过重定向操作" />
+    <MESSAGE value="ServletContext可以进行请求转发" />
+    <option name="LAST_COMMIT_MESSAGE" value="ServletContext可以进行请求转发" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
