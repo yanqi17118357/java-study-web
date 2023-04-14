@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
 
     @SneakyThrows
     @Override
-    public void init() throws ServletException {
+    public void init() {
         System.out.println(getInitParameter("test"));
         // 打印全局初始化参数
         System.out.println(getServletContext().getInitParameter("lbwnb"));
@@ -36,7 +36,38 @@ public class LoginServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Cookie[] cookies = req.getCookies();
+        if (cookies != null) {
+            String username = null;
+            String password = null;
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("username")) username = cookie.getValue();
+                if (cookie.getName().equals("password")) password = cookie.getValue();
+            }
+            if (username != null && password != null) {
+                try(SqlSession sqlSession = factory.openSession(true)) {
+                    UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+                    User user = mapper.getUser(username, password);
+                    if (user != null) {
+                        resp.sendRedirect("time");
+                        return ;
+                    } else {
+                        Cookie cookie_username = new Cookie("username", username);
+                        cookie_username.setMaxAge(0);
+                        Cookie cookie_password = new Cookie("password", password);
+                        cookie_password.setMaxAge(0);
+                        resp.addCookie(cookie_username);
+                        resp.addCookie(cookie_password);
+                    }
+                }
+            }
+        }
+        req.getRequestDispatcher("/").forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html;charset=UTF-8");
         // 获取POST请求携带的表单数据
         Map<String, String[]> map = req.getParameterMap();
@@ -50,10 +81,14 @@ public class LoginServlet extends HttpServlet {
                 User user = userMapper.getUser(username, password);
 
                 if (user != null) {
-                    Cookie cookie = new Cookie("test", "yyds");
-                    // cookie的失效时间 20s
-                    cookie.setMaxAge(20);
-                    resp.addCookie(cookie);
+                    if(map.containsKey("remember-me")){   //若勾选了勾选框，那么会此表单信息
+                        Cookie cookie_username = new Cookie("username", username);
+                        cookie_username.setMaxAge(30);
+                        Cookie cookie_password = new Cookie("password", password);
+                        cookie_password.setMaxAge(30);
+                        resp.addCookie(cookie_username);
+                        resp.addCookie(cookie_password);
+                    }
                     resp.sendRedirect("time");
                 } else {
                     resp.getWriter().write("您登录的用户密码不正确或此用户不存在");
