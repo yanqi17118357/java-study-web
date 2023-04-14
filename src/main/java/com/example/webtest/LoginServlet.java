@@ -2,22 +2,20 @@ package com.example.webtest;
 
 import com.example.entity.User;
 import com.example.mapper.UserMapper;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebInitParam;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;
-import org.apache.commons.io.IOUtils;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 // 此初始化参数只作用域当前的Servlet
@@ -42,7 +40,7 @@ public class LoginServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
         // 获取POST请求携带的表单数据
         Map<String, String[]> map = req.getParameterMap();
-        //判断表单是否完整
+        // 判断表单是否完整
         if (map.containsKey("username") && map.containsKey("password")) {
             String username = req.getParameter("username");
             String password = req.getParameter("password");
@@ -52,12 +50,11 @@ public class LoginServlet extends HttpServlet {
                 User user = userMapper.getUser(username, password);
 
                 if (user != null) {
-
-                    ServletContext context = getServletContext();
-                    // 可以获取webapp中的资源
-                    System.out.println(IOUtils.toString(context.getResourceAsStream("index.html"), StandardCharsets.UTF_8));
-                    System.out.println(IOUtils.toString(context.getResourceAsStream("test.js"), StandardCharsets.UTF_8));
-                    context.getRequestDispatcher("/time").forward(req, resp);
+                    Cookie cookie = new Cookie("test", "yyds");
+                    // cookie的失效时间 20s
+                    cookie.setMaxAge(20);
+                    resp.addCookie(cookie);
+                    resp.sendRedirect("time");
                 } else {
                     resp.getWriter().write("您登录的用户密码不正确或此用户不存在");
                 }
