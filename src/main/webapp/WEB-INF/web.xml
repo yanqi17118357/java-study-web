@@ -7,4 +7,7 @@
         <param-name>lbwnb</param-name>
         <param-value>我是全局初始化参数</param-value>
     </context-param>
+    <session-config>
+        <session-timeout>1</session-timeout>
+    </session-config>
 </web-app>
