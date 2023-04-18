@@ -25,6 +25,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        System.out.println("我是Servlet");
         Cookie[] cookies = req.getCookies();
         if (cookies != null) {
             String username = null;
